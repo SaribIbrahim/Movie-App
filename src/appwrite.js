@@ -38,3 +38,17 @@ catch(error){
 
 
 }
+
+export const getTrendingMovies=async()=>{
+    try{
+        const result= await database.listDocuments(DATABASE_ID,COLLECTION_ID,[
+            Query.limit(5), // limit to 5 movies
+            Query.orderDesc('count') // order by count in descending order
+        ])
+        return result.documents
+    }
+    catch(error){
+        console.log(error);
+        
+    }
+}
